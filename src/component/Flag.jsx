@@ -5,18 +5,15 @@ const Flag = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    try{
-
-    }catch(error){
-      console.error("Error fetching data: "+error);
-      
-    }
     const fetchCountries = async () => {
-      const result = await axios.get(
-        "https://xcountries-backend.azurewebsites.net/all"
-      );
-      setData(result.data);
-      
+      try {
+        const result = await axios.get(
+          "https://xcountries-backend.azurewebsites.net/all"
+        );
+        setData(result.data);
+      } catch (error) {
+        console.error("Error fetching data: " + error);
+      }
     };
     fetchCountries();
   }, []);
@@ -30,9 +27,10 @@ const Flag = () => {
         flexWrap: "wrap",
       }}
     >
-       
       {data.map((item) => {
-      return (  <CountryCard key={item.abbr} flag={item.flag} name={item.name} />)
+        return (
+          <CountryCard key={item.abbr} flag={item.flag} name={item.name} />
+        );
       })}
     </div>
   );
@@ -51,8 +49,8 @@ const CountryCard = ({ flag, name }) => {
         padding: "10px",
         width: "200px",
         height: "200px",
-        textAlign:"center",
-        borderRadius:"5px"
+        textAlign: "center",
+        borderRadius: "5px",
       }}
     >
       <img src={flag} alt={name} style={{ height: "100px", width: "100px" }} />
