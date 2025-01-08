@@ -16,6 +16,7 @@ const Flag = () => {
         "https://xcountries-backend.azurewebsites.net/all"
       );
       setData(result.data);
+      
     };
     fetchCountries();
   }, []);
