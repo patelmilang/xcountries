@@ -5,6 +5,12 @@ const Flag = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    try{
+
+    }catch(error){
+      console.error("Error fetching data: "+error);
+      
+    }
     const fetchCountries = async () => {
       const result = await axios.get(
         "https://xcountries-backend.azurewebsites.net/all"
